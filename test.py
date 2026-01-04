@@ -9,7 +9,8 @@ import walnutpi_csi
 
 if __name__ == '__main__':
     cap = cv2.VideoCapture(0)
-    isp = walnutpi_csi.isp(cap)
+    cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter.fourcc('N','V','1','2'))
+    isp = walnutpi_csi.isp()
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
     
@@ -24,7 +25,6 @@ if __name__ == '__main__':
     print(f"实际FPS: {cap.get(cv2.CAP_PROP_FPS)}")
 
     print("开始读取摄像头图像...")
-    
     while True:
         ret, frame = cap.read()
         if ret:
